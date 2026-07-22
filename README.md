@@ -12,6 +12,12 @@ Developed from 2016 to 2020. Shipped for Linux and Windows as a standalone appli
 
 Path tracers estimate light transport using Monte Carlo sampling. At low samples per pixel (spp), estimator variance appears as stochastic noise in the rendered image. Increasing spp reduces the variance but raises render time and compute cost across every frame in a sequence.
 
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=dqq-chYzEYs">
+    <img src="docs/img/showcase.jpg" alt="Ginzburg Denoiser used on The Fixies and Fairy-teens productions" width="100%">
+  </a>
+</p>
+
 Ginzburg Denoiser removes Monte Carlo noise from low-sample renders so fewer spp are required for a production-quality result. The system was designed to preserve hair, fur, bump, displacement and specular detail while maintaining temporal stability across animated sequences.
 
 The original Ginzburg Denoiser is a classical, non-data-driven system. It does not use training data, neural networks or learned weights. Its output is controlled by explicit filtering algorithms, motion estimation, renderer AOVs and artist-defined parameters.
@@ -19,12 +25,6 @@ The original Ginzburg Denoiser is a classical, non-data-driven system. It does n
 The denoiser combines hybrid Non-Local Means and median spatial filtering with motion-estimated temporal accumulation. In addition to the noisy colour image, it uses auxiliary render buffers for motion, world position, depth, surface normals and albedo. Renderers expose these buffers as Arbitrary Output Variables (AOVs).
 
 The software was integrated into a Maya-RenderMan production pipeline and used directly by lighting artists in Nuke. It was deployed on *The Fixies*, *The Fixies: Top Secret*, *Fixies vs. Crabots* and *Fairy-teens*. In production, the system reduced noise by up to **7x** and lowered rendering budgets by approximately **30%**.
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=dqq-chYzEYs">
-    <img src="docs/img/showcase.jpg" alt="Ginzburg Denoiser used on The Fixies and Fairy-teens productions" width="100%">
-  </a>
-</p>
 
 <p align="center">
   <img src="docs/img/production-pipeline.jpg" alt="Animation production render queue" width="100%">
